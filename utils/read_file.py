@@ -87,7 +87,7 @@ def read_ledger(path: str):
             if line.startswith('!include'):
                 file_path = line.split()[-1]
                 base_dir = os.path.dirname(current_file)
-                files_to_read.append(
+                files_to_read.insert(0,
                     os.path.join(base_dir, file_path)
                 )
 

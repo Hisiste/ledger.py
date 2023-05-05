@@ -14,4 +14,4 @@ over the original project.
 - Support for flags:
     - [ ] `--sort`.
     - [ ] `--price-db`.
-    - [ ] `--file`.
+    - [X] `--file`.

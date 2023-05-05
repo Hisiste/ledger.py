@@ -10,7 +10,7 @@ over the original project.
 - Support for commands:
     - [ ] Register.
     - [ ] Balance.
-    - [ ] Print.
+    - [X] Print.
 - Support for flags:
     - [ ] `--sort`.
     - [ ] `--price-db`.

@@ -25,14 +25,38 @@ class entry:
         return datetime.fromisoformat(f'{int(year)}-{int(month):02}-{int(day):02}')
 
     
+    def __str_to_price_format(self, price: str):
+        # Find the first instance of a number. A string of digits that may have
+        # a dot and more digits after.
+        price_nu = re.findall(r'\d+(?:\.\d*)?', price)[0]
+        # For the currency symbol, we get rid of the number.
+        price_sy = price.replace(price_nu, '')
+
+        if '-' in price:
+            # If there was a minus (-), add it to the number and delete it from
+            # the currency symbol.
+            price_nu = f"-{price_nu}"
+            price_sy = price_sy.replace('-', '')
+
+        # Remove the whitespace around the currency symbol.
+        price_sy = price_sy.strip()
+
+        # If the symbol is 1 character long, write it on the left.
+        if len(price_sy) == 1:
+            return f"{price_sy}{float(price_nu):.02f}"
+        # If it is longer than 1 character, write it on the right.
+        else:
+            return f"{float(price_nu):.02f} {price_sy}"
+
+
     def __str__(self) -> str:
         result = self.date.strftime('%Y/%m/%d')
         result += " " + self.comment + "\n"
 
         for trans in self.transactions:
             if len(trans) == 2:
-                # TODO: `price` must have a specific format!
                 account, price = trans
+                price = self.__str_to_price_format(price)
             else:
                 account = trans[0]
                 price = ""

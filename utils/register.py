@@ -3,6 +3,22 @@ from typing import List, Iterator
 
 import re
 import shutil
+import colorama
+
+def date_f(text: str):
+    return text
+
+def comment_f(text: str):
+    return colorama.Style.BRIGHT + text + colorama.Style.RESET_ALL
+
+def account_f(text: str):
+    return colorama.Fore.BLUE + text + colorama.Style.RESET_ALL
+
+def price_f(text: str):
+    if '-' in text:
+        return colorama.Fore.RED + text + colorama.Style.RESET_ALL
+    else:
+        return text
 
 
 class currencies:
@@ -130,25 +146,28 @@ def print_register(entries: List[entry]):
     for ent in entries:
         complete_prices(ent)
 
-        date_comment = ent.date.strftime('%y-%b-%d ')
-        date_comment += ent.comment
-        if len(date_comment) > d_c_len:
-            date_comment = date_comment[:d_c_len - 2] + '..'
+        date = date_f(ent.date.strftime('%y-%b-%d '))
+        result += date
 
-        result += f'{date_comment:<{d_c_len}} '
+        comment = ent.comment
+        if len(date) + len(comment) > d_c_len:
+            comment = comment[:d_c_len - len(date) - 2] + '..'
+
+        result += comment_f(f'{comment:<{d_c_len - len(date)}} ')
 
         for trans in ent.transactions:
             account = trans[0]
             if len(account) > acc_len:
                 account = '..' + account[-(acc_len - 2):]
-            result += f'{account:<{acc_len}} '
+
+            result += account_f(f'{account:<{acc_len}} ')
 
             for price in trans[1]:
-                result += f'{price:>{p_1_len}} '
+                result += price_f(f'{price:>{p_1_len}} ')
 
                 current_money.add_money(price)
                 for curr_price in current_money:
-                    result += f'{curr_price:>{p_2_len}}\n'
+                    result += price_f(f'{curr_price:>{p_2_len}}') + '\n'
                     result += ' ' * (d_c_len + 1 + acc_len + 1 + p_1_len + 1)
 
                 result = result.rstrip() + '\n'

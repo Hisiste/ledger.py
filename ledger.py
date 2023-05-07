@@ -2,6 +2,7 @@
 from utils.args import get_arguments, test_args
 from utils.read_file import read_ledger
 from utils.register import print_register
+from utils.sort import sort_entries
 
 def main():
     args = get_arguments()
@@ -11,6 +12,9 @@ def main():
         result = []
         for file in args.files:
             result += read_ledger(file)
+
+    if args.sort:
+        sort_entries(result, args.sort)
 
     if args.verb == 'print':
         for ent in result:

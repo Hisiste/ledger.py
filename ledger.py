@@ -3,6 +3,7 @@ from utils.args import get_arguments, test_args
 from utils.read_file import read_ledger
 from utils.register import print_register
 from utils.sort import sort_entries
+from utils.balance import print_balance
 
 def main():
     args = get_arguments()
@@ -22,6 +23,9 @@ def main():
 
     elif args.verb in ['register', 'reg', 'r']:
         print_register(result)
+
+    elif args.verb in ['balance', 'bal', 'b']:
+        print_balance(result)
 
 
 if __name__ == '__main__':

@@ -2,6 +2,7 @@ from typing import List
 
 from utils.read_file import entry
 from utils.register import currencies, complete_prices
+from utils.colored_output import *
 
 
 class tree:
@@ -53,18 +54,18 @@ class tree:
         result = ''
         if not ignore_level:
             for price in self.value:
-                result += f'{price:>20}\n'
+                result += price_f(f'{price:>20}') + '\n'
 
             result = result.rstrip()
             result += '  ' + ' '*(2 * level)
 
         if len(self.children) == 1:
-            result += self.name + ':'
+            result += account_f(self.name + ':')
             for child in self.children:
                 result += child.__str__(level + 1, ignore_level = True)
 
         else:
-            result += self.name + '\n'
+            result += account_f(self.name) + '\n'
             for child in self.children:
                 result += child.__str__(level + 1)
 
@@ -96,7 +97,7 @@ class accounts_tree:
 
         result += '--------------------\n'
         for price in self.my_accounts.value:
-            result += f'{price:>20}\n'
+            result += price_f(f'{price:>20}') + '\n'
 
         return result.rstrip()
 

@@ -1,24 +1,9 @@
 from utils.read_file import entry
+from utils.colored_output import *
 from typing import List, Iterator
 
 import re
 import shutil
-import colorama
-
-def date_f(text: str):
-    return text
-
-def comment_f(text: str):
-    return colorama.Style.BRIGHT + text + colorama.Style.RESET_ALL
-
-def account_f(text: str):
-    return colorama.Fore.BLUE + text + colorama.Style.RESET_ALL
-
-def price_f(text: str):
-    if '-' in text:
-        return colorama.Fore.RED + text + colorama.Style.RESET_ALL
-    else:
-        return text
 
 
 class currencies:

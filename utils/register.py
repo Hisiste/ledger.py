@@ -101,6 +101,18 @@ class currencies:
         return negated
 
 
+    def __lt__(self, other):
+        if len(self.money.values()) != 1 or len(other.money.values()) != 1:
+            raise Exception('Cannot compare multiple currencies at once!')
+
+        for amount_left in self.money.values():
+            break
+        for amount_right in other.money.values():
+            break
+
+        return amount_left < amount_right
+
+
 def complete_prices(my_entry: entry):
     """
     Transform all string of prices to the class `currencies`. If there is an

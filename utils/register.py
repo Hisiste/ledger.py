@@ -85,11 +85,11 @@ class currencies:
         """
         if not self.money:
             yield '0'
-        for currency, number in self.money.items():
+        for currency, amount in self.money.items():
             if len(currency) == 1:
-                yield f'{currency}{number:.02f}'
+                yield f'{currency}{amount:.02f}'
             else:
-                yield f'{number:.02f} {currency}'
+                yield f'{amount:.02f} {currency}'
 
 
     # What to do if we do "-currencies"?
@@ -111,6 +111,17 @@ class currencies:
             break
 
         return amount_left < amount_right
+
+
+    def __str__(self) -> str:
+        if len(self.money.items()) != 1:
+            raise Exception('Cannot convert to string more than one currency!')
+
+        for currency, amount in self.money.items():
+            if len(currency) == 1:
+                return f'{currency}{amount:.02f}'
+            else:
+                return f'{amount:.02f} {currency}'
 
 
 def complete_prices(my_entry: entry):

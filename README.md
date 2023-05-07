@@ -12,6 +12,6 @@ over the original project.
     - [ ] Balance.
     - [X] Print.
 - Support for flags:
-    - [ ] `--sort`.
+    - [X] `--sort`.
     - [ ] `--price-db`.
     - [X] `--file`.

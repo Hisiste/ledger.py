@@ -51,6 +51,8 @@ class tree:
 
     
     def __str__(self, level=0, ignore_level = False) -> str:
+        self.children.sort(key=lambda child: child.name)
+
         result = ''
         if not ignore_level:
             for price in self.value:
@@ -89,6 +91,7 @@ class accounts_tree:
 
 
     def __str__(self) -> str:
+        self.my_accounts.children.sort(key=lambda child: child.name)
         self.my_accounts.compute_value()
 
         result = ''

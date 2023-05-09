@@ -12,7 +12,7 @@ def get_arguments():
         epilog='This implementation is inspired in \
             [ledger-cli](https://ledger-cli.org/).')
     parser.add_argument('-v', '--version',
-                        action='version', version='%(prog)s 0.1')
+                        action='version', version='%(prog)s 1.0')
 
     parser.add_argument('verb', metavar='Action',
                         action='store', nargs='+',

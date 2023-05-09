@@ -4,6 +4,7 @@ from utils.read_file import read_ledger
 from utils.register import print_register
 from utils.sort import sort_entries
 from utils.balance import print_balance
+from utils.acc_regex import filter_accounts
 
 def main():
     args = get_arguments()
@@ -13,6 +14,9 @@ def main():
         result = []
         for file in args.files:
             result += read_ledger(file)
+
+    if len(args.verb) > 1:
+        result = filter_accounts(args.verb[1:], result)
 
     if args.sort:
         sort_entries(result, args.sort)

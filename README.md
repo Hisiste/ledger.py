@@ -8,8 +8,8 @@ over the original project.
 # What it has
 
 - Support for commands:
-    - [ ] Register.
-    - [ ] Balance.
+    - [X] Register.
+    - [X] Balance.
     - [X] Print.
 - Support for flags:
     - [X] `--sort`.

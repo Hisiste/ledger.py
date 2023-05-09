@@ -14,7 +14,8 @@ def get_arguments():
     parser.add_argument('-v', '--version',
                         action='version', version='%(prog)s 0.1')
 
-    parser.add_argument('verb', metavar='Action', action='store',
+    parser.add_argument('verb', metavar='Action',
+                        action='store', nargs='+',
                         help='Specify an action between balance, report and \
                             print.')
     parser.add_argument('-S', '--sort', metavar='value-expression',
@@ -40,8 +41,8 @@ def test_args(my_args):
         'register', 'reg', 'r',
         'print'
     ]
-    if my_args.verb not in valid_verbs:
-        raise Exception(f'{my_args.verb} is NOT a valid verb! Valid verbs are: {", ".join(valid_verbs)}.')
+    if my_args.verb[0] not in valid_verbs:
+        raise Exception(f'{my_args.verb[0]} is NOT a valid verb! Valid verbs are: {", ".join(valid_verbs)}.')
 
     # Test if expression for sorting is valid.
     # TODO: How can we validate an expression???

@@ -17,14 +17,14 @@ def main():
     if args.sort:
         sort_entries(result, args.sort)
 
-    if args.verb == 'print':
+    if args.verb[0] == 'print':
         for ent in result:
             print(ent)
 
-    elif args.verb in ['register', 'reg', 'r']:
+    elif args.verb[0] in ['register', 'reg', 'r']:
         print_register(result)
 
-    elif args.verb in ['balance', 'bal', 'b']:
+    elif args.verb[0] in ['balance', 'bal', 'b']:
         print_balance(result)
 
 
